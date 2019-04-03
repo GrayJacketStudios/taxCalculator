@@ -4,6 +4,7 @@ import './App.css';
 
 import Boxes  from "./componentes/Boxes";
 import NumberBox from "./componentes/NumberBox";
+import ShowHistory from "./componentes/ShowHistory";
 
 class App extends Component {
 
@@ -21,16 +22,12 @@ class App extends Component {
 
 
   calculaTotal(){
-    let tax;
-    tax = 100+this.state.tax;
-    tax = tax/100;
-    this.setState({total:(tax*this.state.neto).toFixed(2)});
+
+    this.setState({total:(((100+this.state.tax)/100)*this.state.neto).toFixed(2)});
   }
 
   calculaNeto(){
-    let tax;
-    tax = (100)/(100+this.state.tax);
-    this.setState({neto:(tax*this.state.total).toFixed(2)});
+    this.setState({neto:(((100)/(100+this.state.tax))*this.state.total).toFixed(2)});
   }
 
 
@@ -62,16 +59,10 @@ class App extends Component {
   }
 
 
-
-
-
-
-
-
-
   handleHistory(history){
     this.setState({history});
   }
+
 
 
   render() {
@@ -91,8 +82,13 @@ class App extends Component {
                 Neto:  <NumberBox value={this.state.neto} cambiaVal={this.handleNeto}/>  |  Total: <NumberBox value={this.state.total} cambiaVal={this.handleTotal}/>
               </div>
             </div>
+
+            <button className="btn btn-primary">Guardar valores</button>
           
           </Boxes>
+
+
+          <ShowHistory history={this.state.history} />
 
           
 

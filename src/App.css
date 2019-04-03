@@ -21,6 +21,7 @@
 }
 
 .card {
+  margin-top: 2vh;
   color: gray;
   min-width: 75%;
   align-items: center;
