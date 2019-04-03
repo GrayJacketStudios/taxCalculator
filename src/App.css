@@ -23,6 +23,7 @@
 .card {
   color: gray;
   min-width: 75%;
+  align-items: center;
 }
 
 .App-link {

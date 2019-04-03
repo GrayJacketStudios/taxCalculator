@@ -82,7 +82,7 @@ class App extends Component {
           
           <Boxes>
           <div className="container">
-            <div className="row">
+            <div className="row justify-content-center">
               Porcentaje impuesto: <NumberBox value={this.state.tax} cambiaVal={this.handleTax}/>
             </div>
 
