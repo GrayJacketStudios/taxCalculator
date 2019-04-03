@@ -57,7 +57,8 @@ class App extends Component {
     (amount.target.value < 0)
       ?
       this.setState({total: 0}):
-      this.setState({total: amount.target.value},() => {this.calculaNeto()});
+      this.setState({total: amount.target.value},() => {this.calculaNeto()})
+      ;
   }
 
 
