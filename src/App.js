@@ -12,11 +12,11 @@ class App extends Component {
     super(props);
     this.state = {tax: 19, neto:0, total:0, history: []};
     this.handleTax = this.handleTax.bind(this);
-    this.handleHistory = this.handleHistory.bind(this);
 
     this.handleTotal = this.handleTotal.bind(this);
     this.handleNeto = this.handleNeto.bind(this);
-
+    this.guardaHistory = this.guardaHistory.bind(this);
+    this.eliminarFromHistory = this.eliminarFromHistory.bind(this);
 
   }
 
@@ -59,7 +59,18 @@ class App extends Component {
   }
 
 
-  handleHistory(history){
+
+
+  guardaHistory(){
+    let history = this.state.history.slice();
+    history.push({id: (new Date()).getTime(), neto: this.state.neto, total: this.state.total, iva: this.state.tax});
+    this.setState({history});
+  }
+
+  eliminarFromHistory(e){
+    let id = e.target.value;
+    let history = this.state.history.filter(item => parseInt(item.id) !== parseInt(id));
+
     this.setState({history});
   }
 
@@ -83,12 +94,12 @@ class App extends Component {
               </div>
             </div>
 
-            <button className="btn btn-primary">Guardar valores</button>
+            <button className="btn btn-primary" onClick={this.guardaHistory}>Guardar valores</button>
           
           </Boxes>
 
 
-          <ShowHistory history={this.state.history} />
+          <ShowHistory history={this.state.history} elimina={this.eliminarFromHistory} />
 
           
 
